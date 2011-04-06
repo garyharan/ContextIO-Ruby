@@ -173,5 +173,12 @@ describe ContextIO::Connection do
     @connection.download_file(:file_id => file_id)
   end
 
-  it "should search with regular expressions"
+  it "should search with regular expressions" do
+    subject = "api"
+    OAuth::AccessToken.any_instance.expects(:get).once
+          .with("/1.0/search.json?account=#{@account}&subject=#{subject}", "Accept" => "application/json")
+          .returns(stub(:body => '{"data": {}}'))
+    @connection.search(:account => @account, :subject => subject)
+  end
+
 end

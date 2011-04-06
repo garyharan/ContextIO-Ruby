@@ -50,6 +50,10 @@ module ContextIO
       get 'threadinfo', options
     end
 
+    def search(options)
+      get 'search', options
+    end
+
     def discover(options)
       get 'imap/discover', options
     end
